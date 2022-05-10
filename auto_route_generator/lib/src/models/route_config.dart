@@ -191,8 +191,8 @@ class RouteConfig {
   }
 
   String get templateName {
-    final routeName = name ?? "${toLowerCamelCase(className)}Route";
-    return pathName.contains(":") ? '_$routeName' : routeName;
+    final routeName = name ?? '${toLowerCamelCase(className)}Route';
+    return pathName.contains(':') ? '_$routeName' : routeName;
   }
 
   bool get isParent => childRouterConfig != null;
@@ -222,7 +222,7 @@ class RouteConfig {
       var parts = replacementInRouteName!.split(',');
       nameToUse = className.replaceAll(RegExp(parts[0]), parts[1]);
     } else {
-      nameToUse = "${className}Route";
+      nameToUse = '${className}Route';
     }
     return capitalize(nameToUse);
   }

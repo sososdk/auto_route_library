@@ -30,12 +30,6 @@ class RouteParameterResolver {
         _queryParamChecker.firstAnnotationOfExact(parameterElement);
     if (queryParamAnnotation != null) {
       paramAlias = queryParamAnnotation.getField('name')?.toStringValue();
-
-      throwIf(
-        !type.isNullable && !parameterElement.hasDefaultValue,
-        'QueryParams must be nullable or have default value',
-        element: parameterElement,
-      );
     }
 
     throwIf(
@@ -47,7 +41,7 @@ class RouteParameterResolver {
     return ParamConfig(
       type: type,
       element: parameterElement,
-      name: parameterElement.name.replaceFirst("_", ''),
+      name: parameterElement.name.replaceFirst('_', ''),
       alias: paramAlias,
       isPositional: parameterElement.isPositional,
       hasRequired: parameterElement.hasRequired,

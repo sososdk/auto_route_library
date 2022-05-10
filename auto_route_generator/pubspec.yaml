@@ -16,8 +16,10 @@ dependencies:
   dart_style: ^2.2.0
   auto_route:
        ^4.0.0
-#    path: ../auto_route
 
+dependency_overrides:
+  auto_route:
+    path: ../auto_route
 
 dev_dependencies:
   source_gen_test:

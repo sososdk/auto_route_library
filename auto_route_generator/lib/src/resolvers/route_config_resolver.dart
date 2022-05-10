@@ -69,7 +69,7 @@ class RouteConfigResolver {
       }
     }
     throwIf(
-      path.startsWith("/") && _routerConfig.parent != null,
+      path.startsWith('/') && _routerConfig.parent != null,
       'Child [$path] can not start with a forward slash',
     );
 
@@ -210,19 +210,13 @@ class RouteConfigResolver {
       constructor == null,
       'Route widgets must have an unnamed constructor',
     );
-    var hasConstConstructor = false;
     var params = constructor!.parameters;
+    var hasConstConstructor = params.isEmpty && constructor.isConst;
     var parameters = <ParamConfig>[];
-    if (params.isNotEmpty == true) {
-      if (constructor.isConst &&
-          params.length == 1 &&
-          params.first.type.getDisplayString(withNullability: false) == 'Key') {
-        hasConstConstructor = true;
-      } else {
-        final paramResolver = RouteParameterResolver(_typeResolver);
-        for (ParameterElement p in constructor.parameters) {
-          parameters.add(paramResolver.resolve(p));
-        }
+    if (params.isNotEmpty) {
+      final paramResolver = RouteParameterResolver(_typeResolver);
+      for (ParameterElement p in constructor.parameters) {
+        parameters.add(paramResolver.resolve(p));
       }
     }
 
@@ -243,7 +237,7 @@ class RouteConfigResolver {
     if (pathParameters.isNotEmpty) {
       for (var pParam in pathParameters) {
         throwIf(!validPathParamTypes.contains(pParam.type.name),
-            "Parameter [${pParam.name}] must be of a type that can be parsed from a [String] because it will also obtain it's value from a path\nvalid types: $validPathParamTypes",
+            'Parameter [${pParam.name}] must be of a type that can be parsed from a [String] because it will also obtain it\'s value from a path\nvalid types: $validPathParamTypes',
             element: pParam.element);
       }
     }

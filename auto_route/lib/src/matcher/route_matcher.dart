@@ -202,6 +202,11 @@ class RouteMatcher {
       }
     }
 
+    var queryParams = _normalizeSingleValues(url.queryParametersAll);
+    if (config.requiredQueryParams.any((e) => !queryParams.containsKey(e))) {
+      return null;
+    }
+
     var extractedSegments = segments.sublist(0, parts.length);
     if (parts.isNotEmpty && parts.last == "*") {
       extractedSegments = segments;
@@ -219,7 +224,7 @@ class RouteMatcher {
       redirectedFrom: redirectedFrom,
       guards: config.guards,
       pathParams: Parameters(pathParams),
-      queryParams: Parameters(_normalizeSingleValues(url.queryParametersAll)),
+      queryParams: Parameters(queryParams),
       fragment: url.fragment,
     );
   }

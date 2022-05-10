@@ -48,7 +48,7 @@ class ParamConfig {
 
   String getSafeName() {
     if (reservedVarNames.contains(name)) {
-      return name + "0";
+      return '${name}0';
     } else {
       return name;
     }

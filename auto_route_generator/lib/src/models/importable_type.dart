@@ -13,7 +13,7 @@ class ResolvedType {
     this.isNullable = false,
   });
 
-  String get identity => "$import#$name";
+  String get identity => '$import#$name';
 
   TypeReference get refer {
     return TypeReference((b) => b

@@ -8,18 +8,16 @@ import 'package:auto_route/src/router/widgets/auto_route_navigator.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:universal_html/html.dart' as html;
 
 import '../../utils.dart';
+import 'navigation_history_sub.dart'
+    if (dart.library.html) 'navigation_history_web.dart'
+    if (dart.library.io) 'navigation_history_io.dart';
 
 part '../../route/route_data.dart';
-
 part 'auto_route_guard.dart';
-
 part 'auto_router_delegate.dart';
-
 part 'navigation_history.dart';
-
 part 'root_stack_router.dart';
 
 typedef RouteDataPredicate = bool Function(RouteData route);
@@ -1001,7 +999,7 @@ abstract class StackRouter extends RoutingController {
       _pages.add(pageBuilder(data));
     }
 
-    navigationHistory._onNewUrlState(
+    navigationHistory.onNewUrlState(
       UrlState.fromSegments(
         root.currentSegments,
         shouldReplace: current == routeData,

@@ -23,13 +23,10 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       theme: ThemeData.dark().copyWith(
-        pageTransitionsTheme: PageTransitionsTheme(
-            builders: {
-              TargetPlatform.iOS: NoShadowCupertinoPageTransitionsBuilder(),
-              TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
-            }
-        )
-      ),
+          pageTransitionsTheme: PageTransitionsTheme(builders: {
+        TargetPlatform.iOS: NoShadowCupertinoPageTransitionsBuilder(),
+        TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+      })),
       routerDelegate: _rootRouter.delegate(
         initialDeepLink: '/profile/my-books',
         navigatorObservers: () => [AutoRouteObserver()],

@@ -7,7 +7,7 @@ import '../models/route_parameter_config.dart';
 import '../models/router_config.dart';
 import 'library_builder.dart';
 
-const _routeConfigType = Reference("RouteConfig", autoRouteImport);
+const _routeConfigType = Reference('RouteConfig', autoRouteImport);
 
 Class buildRouterConfig(RouterConfig router, Set<ResolvedType> guards,
         List<RouteConfig> routes) =>
@@ -63,7 +63,7 @@ Class buildRouterConfig(RouterConfig router, Set<ResolvedType> guards,
 
 Field buildPagesMap(List<RouteConfig> routes) {
   return Field((b) => b
-    ..name = "pagesMap"
+    ..name = 'pagesMap'
     ..modifier = FieldModifier.final$
     ..annotations.add(refer('override'))
     ..type = TypeReference(
@@ -252,11 +252,19 @@ Iterable<Object> buildRoutes(List<RouteConfig> routes, {Reference? parent}) =>
                   r.childRouterConfig!.routes,
                   parent: refer(r.routeName),
                 ),
-              )
+              ),
+            if (r.parameters.any(_isRequiredQueryParams))
+              'requiredQueryParams': literalList(r.parameters
+                  .where(_isRequiredQueryParams)
+                  .map((p) => p.name)
+                  .toList(growable: false)),
           },
         );
       },
     );
+
+bool _isRequiredQueryParams(ParamConfig p) =>
+    p.isQueryParam && !p.element.hasDefaultValue && !p.type.isNullable;
 
 Expression _getLiteralValue(MetaEntry<dynamic> metaEntry) {
   switch (metaEntry.type) {

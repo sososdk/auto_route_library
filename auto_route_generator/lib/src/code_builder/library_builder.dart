@@ -17,7 +17,7 @@ const Reference requiredAnnotation = Reference('required', materialImport);
 
 TypeReference listRefer(Reference reference, {bool nullable = false}) =>
     TypeReference((b) => b
-      ..symbol = "List"
+      ..symbol = 'List'
       ..isNullable = nullable
       ..types.add(reference));
 
