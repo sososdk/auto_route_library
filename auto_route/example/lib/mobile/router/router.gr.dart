@@ -32,8 +32,10 @@ class RootRouter extends _i4.RootStackRouter {
   @override
   final Map<String, _i4.PageFactory> pagesMap = {
     HomeRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
       return _i4.MaterialPageX<String>(
-          routeData: routeData, child: const _i1.HomePage());
+          routeData: routeData, child: _i1.HomePage(key: args.key));
     },
     UserDataCollectorRoute.name: (routeData) {
       final args = routeData.argsAs<UserDataCollectorRouteArgs>(
@@ -54,12 +56,16 @@ class RootRouter extends _i4.RootStackRouter {
               showBackButton: args.showBackButton));
     },
     BooksTab.name: (routeData) {
+      final args =
+          routeData.argsAs<BooksTabArgs>(orElse: () => const BooksTabArgs());
       return _i4.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i4.EmptyRouterScreen());
+          routeData: routeData, child: _i4.EmptyRouterScreen(key: args.key));
     },
     ProfileTab.name: (routeData) {
+      final args = routeData.argsAs<ProfileTabArgs>(
+          orElse: () => const ProfileTabArgs());
       return _i4.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i4.EmptyRouterPage());
+          routeData: routeData, child: _i4.EmptyRouterPage(key: args.key));
     },
     SettingsTab.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
@@ -196,11 +202,25 @@ class RootRouter extends _i4.RootStackRouter {
 
 /// generated route for
 /// [_i1.HomePage]
-class HomeRoute extends _i4.PageRouteInfo<void> {
-  const HomeRoute({List<_i4.PageRouteInfo>? children})
-      : super(HomeRoute.name, path: '/', initialChildren: children);
+class HomeRoute extends _i4.PageRouteInfo<HomeRouteArgs> {
+  HomeRoute({_i13.Key? key, List<_i4.PageRouteInfo>? children})
+      : super(HomeRoute.name,
+            path: '/',
+            args: HomeRouteArgs(key: key),
+            initialChildren: children);
 
   static const String name = 'HomeRoute';
+}
+
+class HomeRouteArgs {
+  const HomeRouteArgs({this.key});
+
+  final _i13.Key? key;
+
+  @override
+  String toString() {
+    return 'HomeRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
@@ -267,20 +287,48 @@ class LoginRouteArgs {
 
 /// generated route for
 /// [_i4.EmptyRouterScreen]
-class BooksTab extends _i4.PageRouteInfo<void> {
-  const BooksTab({List<_i4.PageRouteInfo>? children})
-      : super(BooksTab.name, path: 'books', initialChildren: children);
+class BooksTab extends _i4.PageRouteInfo<BooksTabArgs> {
+  BooksTab({_i13.Key? key, List<_i4.PageRouteInfo>? children})
+      : super(BooksTab.name,
+            path: 'books',
+            args: BooksTabArgs(key: key),
+            initialChildren: children);
 
   static const String name = 'BooksTab';
 }
 
+class BooksTabArgs {
+  const BooksTabArgs({this.key});
+
+  final _i13.Key? key;
+
+  @override
+  String toString() {
+    return 'BooksTabArgs{key: $key}';
+  }
+}
+
 /// generated route for
 /// [_i4.EmptyRouterPage]
-class ProfileTab extends _i4.PageRouteInfo<void> {
-  const ProfileTab({List<_i4.PageRouteInfo>? children})
-      : super(ProfileTab.name, path: 'profile', initialChildren: children);
+class ProfileTab extends _i4.PageRouteInfo<ProfileTabArgs> {
+  ProfileTab({_i13.Key? key, List<_i4.PageRouteInfo>? children})
+      : super(ProfileTab.name,
+            path: 'profile',
+            args: ProfileTabArgs(key: key),
+            initialChildren: children);
 
   static const String name = 'ProfileTab';
+}
+
+class ProfileTabArgs {
+  const ProfileTabArgs({this.key});
+
+  final _i13.Key? key;
+
+  @override
+  String toString() {
+    return 'ProfileTabArgs{key: $key}';
+  }
 }
 
 /// generated route for

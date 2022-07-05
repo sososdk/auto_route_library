@@ -18,8 +18,10 @@ dependencies:
   args: ^2.3.1
   auto_route:
        ^4.2.0
-#    path: ../auto_route
 
+dependency_overrides:
+  auto_route: 
+    path: ../auto_route
 
 dev_dependencies:
   source_gen_test:

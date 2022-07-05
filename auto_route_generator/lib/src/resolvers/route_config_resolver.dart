@@ -195,21 +195,17 @@ class RouteConfigResolver {
       constructor == null,
       'Route widgets must have an unnamed constructor',
     );
-    var hasConstConstructor = false;
     var params = constructor!.parameters;
+    var hasConstConstructor = params.isEmpty && constructor.isConst;
     var parameters = <ParamConfig>[];
-    if (params.isNotEmpty == true) {
-      if (constructor.isConst && params.length == 1 && params.first.type.getDisplayString(withNullability: false) == 'Key') {
-        hasConstConstructor = true;
-      } else {
-        final paramResolver = RouteParameterResolver(_typeResolver);
-        for (ParameterElement p in constructor.parameters) {
-          parameters.add(paramResolver.resolve(
-            p,
-            pathParams: pathParams,
-            inheritedPathParams: inheritedPathParams,
-          ));
-        }
+    if (params.isNotEmpty) {
+      final paramResolver = RouteParameterResolver(_typeResolver);
+      for (ParameterElement p in constructor.parameters) {
+        parameters.add(paramResolver.resolve(
+          p,
+          pathParams: pathParams,
+          inheritedPathParams: inheritedPathParams,
+        ));
       }
     }
 

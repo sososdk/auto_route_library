@@ -12,6 +12,7 @@ class RouteConfig {
   final bool usesPathAsKey;
   final String? parent;
   final Map<String, dynamic> meta;
+  final List<String> requiredQueryParams;
 
   RouteConfig(
     this.name, {
@@ -22,6 +23,7 @@ class RouteConfig {
     this.redirectTo,
     this.parent,
     this.meta = const {},
+    this.requiredQueryParams = const [],
     List<RouteConfig>? children,
   }) : _children = children != null ? RouteCollection.from(children) : null;
 

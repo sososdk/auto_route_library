@@ -4,15 +4,15 @@ abstract class AutoRouteGuard {
   /// clients will call [resolver.next(true --> default)] to continue
   /// navigation or [resolver.next(false)] to abort navigation
   /// example
-  /*
-  class AuthGuard extends AutoRouteGuard {
-  @override
-  void onNavigation(NavigationResolver resolver, StackRouter router) {
-     /// resolver.next(true) == we're good, continue navigation
-     resolver.next(isAuthenticated)
-  }
-}
-   */
+  /// ```dart
+  /// class AuthGuard extends AutoRouteGuard {
+  ///   @override
+  ///   void onNavigation(NavigationResolver resolver, StackRouter router) {
+  ///      // resolver.next(true) == we're good, continue navigation
+  ///      resolver.next(isAuthenticated)
+  ///   }
+  /// }
+  /// ```
   void onNavigation(
     NavigationResolver resolver,
     StackRouter router,
