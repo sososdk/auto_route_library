@@ -9,8 +9,7 @@ abstract class RootStackRouter extends StackRouter {
           key: const ValueKey('Root'),
           navigatorKey: navigatorKey,
         ) {
-    _navigationHistory =
-        kIsWeb ? WebNavigationHistory(this) : NativeNavigationHistory(this);
+    _navigationHistory = createNavigationHistory(this);
   }
 
   @override

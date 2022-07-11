@@ -42,12 +42,6 @@ class RouteParameterResolver {
     var queryParamAnnotation = _queryParamChecker.firstAnnotationOfExact(parameterElement);
     if (queryParamAnnotation != null) {
       paramAlias = queryParamAnnotation.getField('name')?.toStringValue();
-
-      throwIf(
-        !type.isNullable && !parameterElement.hasDefaultValue,
-        'QueryParams must be nullable or have default value',
-        element: parameterElement,
-      );
     }
 
     throwIf(
